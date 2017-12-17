@@ -1,0 +1,222 @@
+#include<iostream>
+#include<cstdio>
+#include <fstream>
+#include <cstring>
+using namespace std;
+int total;
+int choice;
+class student{
+    public:
+int id,age;
+string name;
+void get_id()
+{cin>>id;}
+void get_age()
+{cin>>age;}
+void get_name()
+{cin>>name;}
+};
+class question{
+string question_text,answer_1,answer_2,answer_3,answer_4;
+int correct_answer,question_score;
+public:
+void get_value(string q,string a1,string a2,string a3,string a4,int ca,int qs);
+void ask_question();
+};
+class result{
+    int student_ID;
+public:
+    void get_id()
+    {
+        cin>>student_ID;
+    }
+    void show_result()
+
+    {cout<<"Your total score is "<<total<<" out of 100"<<endl;
+    if(total>=90)
+        cout<<"Your grade is A+"<<endl;
+        else if(total>=80)
+        cout<<"Your grade is A"<<endl;
+        else if(total>=70)
+        cout<<"Your grade is A-"<<endl;
+
+         else if(total>=60)
+        cout<<"Your grade is B"<<endl;
+
+         else if(total>=50)
+        cout<<"Your grade is C"<<endl;
+
+   else if(total>=40)
+        cout<<"Your grade is D"<<endl;
+
+        else
+            cout<<"Better luck for next time."<<endl;
+}
+    friend class question;
+};
+void question::get_value(string q,string a1,string a2,string a3,string a4,int ca,int qs)
+{
+    question_text=q;
+    answer_1=a1;
+    answer_2=a2;
+    answer_3=a3;
+    answer_4=a4;
+    correct_answer=ca;
+    question_score=qs;
+}
+void question::ask_question()
+{
+    cout<<"##"<<" "<<question_text<<endl;
+    cout<<"1. "<<answer_1<<endl;
+    cout<<"2. "<<answer_2<<endl;
+    cout<<"3. "<<answer_3<<endl;
+    cout<<"4. "<<answer_4<<endl;
+    cout<<"What is your answer?"<<endl;
+    cin>>choice;
+    if(choice==correct_answer)
+    {
+        cout<<"Great! You are correct."<<endl;
+        total=total+question_score;
+        cout<<"Score: "<<question_score<<" Out of "<<question_score<<"!"<<endl;
+    }
+    else
+    {
+        cout<<"Oh No! You are wrong."<<endl;
+        cout<<"Score: 0 out of "<<question_score<<"!"<<endl;
+        cout<<"The correct answer is "<<correct_answer<<"."<<endl;
+    }
+}
+int main()
+{
+for(int i=1;i<=41;i++)
+    cout<<"*";
+    cout<<endl;
+    for(int i=1;i<=41;i++)
+    {
+        if(i==1||i==41)
+        cout<<"*";
+        else cout<<" ";
+    }
+    cout<<endl;
+    cout<<"* * WELCOME TO THE ONLINE EXAMINATION!* *"<<endl;
+    for(int i=1;i<=41;i++)
+    {
+        if(i==1||i==41)
+        cout<<"*";
+        else cout<<" ";
+    }
+    cout<<endl;
+    for(int i=1;i<=41;i++)
+    cout<<"*";
+    cout<<endl;
+    student s;
+    cout<<"###Participant details###"<<endl;
+    cout<<"What is your name?"<<endl;
+    s.get_name();
+    cout<<endl;
+    cout<<"How old are you?"<<endl;
+    s.get_age();
+    cout<<endl;
+    cout<<"What is your ID?"<<endl;
+    s.get_id();
+    cout<<endl;
+    string respond;
+    cout<<"Are you ready to take the exam? yes/no."<<endl;
+    cin>>respond;
+    if(respond=="yes")
+    {
+        cout<<"Ok,Good Luck!"<<endl;
+    }
+    else
+    {cout<<"Ok, Goodbye!"<<endl;
+    return 0;}
+    question q1,q2,q3,q4,q5,q6,q7,q8,q9,q10;
+    q1.get_value("What is the only function all C++ program must contain?",
+                 "start()",
+                 "system()",
+                 "main()",
+                 "program()",
+                 3,
+                 10);
+    q2.get_value("Which of the following is a correct comment to use?",
+                 "*/ Comments */",
+                 "/* Comments */",
+                 "** Comments **",
+                 "{Comments}",
+                 2,
+                 10);
+    q3.get_value("The statement i++; is equivalent to: ",
+                 "i=i+i",
+                 "i=i+1",
+                 "i=i-1",
+                 "i--",
+                 2,
+                 10);
+    q4.get_value("In c++, 14%4=",
+                 "3",
+                 "1",
+                 "4",
+                 "2",
+                 4,
+                 10);
+    q5.get_value("When a datatype must contain decimal numbers, assign the type: ",
+                 "int",
+                 "char",
+                 "double",
+                 "long int",
+                 3,
+                 10);
+    q6.get_value("The name of a variable is known as its: ",
+                 "identifier",
+                 "constant",
+                 "data type",
+                 "base",
+                 1,
+                 10);
+    q7.get_value("In int main(), what does the int stand for?",
+                 "initialize",
+                 "integer",
+                 "inheritance",
+                 "nothing",
+                 2,
+                 10);
+    q8.get_value("The relational operator for equal is: ",
+                 "=",
+                 "/=",
+                 "=/",
+                 "==",
+                 4,
+                 10);
+    q9.get_value("Which of the following is true?",
+                 "All objects of a class share all data members of class",
+                 "Objects of a class  do not share non static members",
+                  "Objects of a class do not share codes of non static methods",
+                 "None of above",
+                 2,
+                 10);
+    q10.get_value("Constructor is: ","A class automatically called whenever a new object of this class is created",
+                 "A class automatically called whenever a new object of this class is destroyed",
+                 "A function automatically called whenever a new object of this class is created",
+                 "A function automatically called whenever a new object of this class is destroyed",
+                 3,
+                 10);
+    q1.ask_question();
+    q2.ask_question();
+    q3.ask_question();
+    q4.ask_question();
+    q5.ask_question();
+    q6.ask_question();
+    q7.ask_question();
+    q8.ask_question();
+    q9.ask_question();
+    q10.ask_question();
+    result r;
+    cout<<"Student ID: ";
+    cout<<s.id<<endl;
+    cout<<"Student AGE: ";
+    cout<<s.age<<endl;
+    cout<<"Student NAME: ";
+    cout<<s.name<<endl;
+    r.show_result();
+        return 0;
+}
